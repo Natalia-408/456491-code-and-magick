@@ -85,7 +85,11 @@
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
-
+      <script> 
+        var fireballSize = 22;
+        
+        
+      </script> 
       <span class="setup-close">&times;</span>
     </div>
 
@@ -180,7 +184,27 @@
     <p class="setup-similar-label">Петр Петров</p>
   </div>
 </template>
-
+<script>
+  var fireballSize = 22;
+  var getFireballSpeed = function(left) {
+    if (left) {
+      return 5;
+    } else {
+      return 2;
+    }
+  }
+  var wizardSpeed = 3;
+  var wizardWidth = 70;
+  var getWizardHeight = function(left) {
+    return 1.337 * wizardWidth;
+   }
+  function getWizardX(width) {
+    return width / 2;
+  }
+  function getWizardY(height) {
+    return height / 3 * 2;
+  }
+</script>
 <script src="js/game.js"></script>
 
 </body>
