@@ -85,11 +85,6 @@
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
-      <script> 
-        var fireballSize = 22;
-        
-        
-      </script> 
       <span class="setup-close">&times;</span>
     </div>
 
@@ -187,17 +182,13 @@
 <script>
   var fireballSize = 22;
   var getFireballSpeed = function(left) {
-    if (left) {
-      return 5;
-    } else {
-      return 2;
-    }
+    return left ? 5 : 2;
   }
   var wizardSpeed = 3;
   var wizardWidth = 70;
   var getWizardHeight = function(left) {
     return 1.337 * wizardWidth;
-   }
+  }
   function getWizardX(width) {
     return width / 2;
   }
