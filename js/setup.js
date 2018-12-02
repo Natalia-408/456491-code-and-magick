@@ -33,6 +33,8 @@ var colorCoats = [
 ];
 var colorEyes = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var colorfireballs = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
@@ -88,38 +90,74 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
+
+// Изменение цвета мантии персонажа по клику
+var wizardCoat = document.querySelectorAll('.wizard-coat');
+
+var addCoatClickHandler = function (wCoat) {
+  wCoat.addEventListener('click', function () {
+    wCoat.style.fill = getRandomProperty(colorCoats);
+  });
+};
+
+for (var j = 0; j < wizardCoat.length; j++) {
+  addCoatClickHandler(wizardCoat[j]);
+}
+
+// Изменение цвета глаз персонажа по клику
+var wizardEye = document.querySelectorAll('.wizard-eyes');
+
+var addEyeClickHandler = function (wEye) {
+  wEye.addEventListener('click', function () {
+    wEye.style.fill = getRandomProperty(colorEyes);
+  });
+};
+
+for (var j1 = 0; j1 < wizardEye.length; j1++) {
+  addEyeClickHandler(wizardEye[j1]);
+}
+
+// Изменение цвета фаерболов персонажа по клику
+
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
+
+var fireballClickHandler = function () {
+  wizardFireball.style.background = getRandomProperty(colorfireballs);
+};
+
+wizardFireball.addEventListener('click', fireballClickHandler);
