@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
@@ -12,7 +12,7 @@ var TEXT_HEIGHT = 20; // высота строки текста
 var TEXT_WIDTH = 50; // отступ текста от края облака
 
 // отрисовка облака
-var createCloud = function(ctx, x, y, color) {
+var createCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
@@ -27,26 +27,26 @@ function getMaxElement(times) {
   return maxTime;
 }
 
-window.renderStatistics = function(ctx, players, times) {
-  createCloud(ctx, CLOUD_X + SWING, CLOUD_Y + SWING, "rgba(0, 0, 0, 0.7)");
-  createCloud(ctx, CLOUD_X, CLOUD_Y, "#fff");
+window.renderStatistics = function (ctx, players, times) {
+  createCloud(ctx, CLOUD_X + SWING, CLOUD_Y + SWING, 'rgba(0, 0, 0, 0.7)');
+  createCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = '#000';
 
   var maxTime = getMaxElement(times);
   var barWidth = (COLUMN_WIDTH + COLUMN_SPACE) * players.length;
   var beginX = (CLOUD_WIDTH - barWidth) / 2;
 
-  ctx.font = "16px PT Mono";
+  ctx.font = '16px PT Mono';
   ctx.fillText(
-    "Ура, вы победили!",
-    CLOUD_X + SWING + TEXT_WIDTH,
-    CLOUD_Y + SWING + TEXT_HEIGHT
+      'Ура, вы победили!',
+      CLOUD_X + SWING + TEXT_WIDTH,
+      CLOUD_Y + SWING + TEXT_HEIGHT
   );
   ctx.fillText(
-    "Список результатов:",
-    CLOUD_X + SWING + TEXT_WIDTH,
-    CLOUD_Y + SWING + TEXT_HEIGHT * 2
+      'Список результатов:',
+      CLOUD_X + SWING + TEXT_WIDTH,
+      CLOUD_Y + SWING + TEXT_HEIGHT * 2
   );
 
   var barStartX = CLOUD_X + beginX;
@@ -54,22 +54,22 @@ window.renderStatistics = function(ctx, players, times) {
   var barEndY = barStartY + BAR_HEIGHT;
 
   for (var i = 0; i < players.length; i++) {
-    if (players[i] === "Вы") {
-      ctx.fillStyle = "rgba(255, 0, 0, 1)";
+    if (players[i] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       var randomColor = Math.floor(255 - Math.random() * 255);
-      ctx.fillStyle = "rgb(00, 00, " + randomColor + ")";
+      ctx.fillStyle = 'rgb(00, 00, ' + randomColor + ')';
     }
     ctx.fillRect(
-      barStartX + beginX + (COLUMN_WIDTH + COLUMN_SPACE) * i,
-      barEndY - (BAR_HEIGHT * times[i]) / maxTime,
-      COLUMN_WIDTH,
-      (BAR_HEIGHT * times[i]) / maxTime
+        barStartX + beginX + (COLUMN_WIDTH + COLUMN_SPACE) * i,
+        barEndY - (BAR_HEIGHT * times[i]) / maxTime,
+        COLUMN_WIDTH,
+        (BAR_HEIGHT * times[i]) / maxTime
     );
     ctx.fillText(
-      players[i],
-      barStartX + beginX + (COLUMN_WIDTH + COLUMN_SPACE) * i,
-      barEndY + TEXT_HEIGHT
+        players[i],
+        barStartX + beginX + (COLUMN_WIDTH + COLUMN_SPACE) * i,
+        barEndY + TEXT_HEIGHT
     );
   }
 };
